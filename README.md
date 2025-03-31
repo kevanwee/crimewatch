@@ -16,6 +16,11 @@ To run CrimeWatch, install the required dependencies:
 pip install pandas requests beautifulsoup4 ftfy spacy
 ```
 
+and run:
+```bash
+python crimewatcher.py
+```
+
 ## 🔍 Data Retrieval
 
 The scraper currently retrieves the following fields:
