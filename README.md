@@ -1,6 +1,8 @@
 # 🕵️ CrimeWatch
-
-CrimeWatch is a tool that produces a heatmap of criminal cases with judgments as found on eLitigation. It scrapes data from the site using BeautifulSoup and processes it for analysis.
+<div align="center">
+  <img src="./readme/crimewatch.jpg"></img>
+</div>
+CrimeWatch is a tool that produces a heatmap of criminal cases with reported judgments as found on eLitigation. It scrapes data from the site using BeautifulSoup and processes it for analysis.
 
 ## 🚧 Status
 
