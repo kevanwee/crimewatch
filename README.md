@@ -8,7 +8,7 @@ CrimeWatch is a tool that produces a heatmap of criminal cases with reported jud
 
 CrimeWatch is currently in development.
 - ✅ Web scraper is built
-- ❌ Heatmap feature is deprecated and not functional yet
+- ❌ Heatmap feature is not functional yet
 
 ## 📥 Installation
 
