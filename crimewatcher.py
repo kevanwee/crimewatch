@@ -120,6 +120,9 @@ class SingaporeCrimeScraper:
 
         if output_file_name is None:
             output_file_name = f"elitigation_criminal_cases_{start_year}_to_{end_year}.csv"
+        output_path = Path(output_file_name)
+        if output_path.parent != Path("."):
+            output_path.parent.mkdir(parents=True, exist_ok=True)
 
         for year in range(start_year, end_year + 1):
             print(f"Processing cases from {year}...")
@@ -151,9 +154,9 @@ class SingaporeCrimeScraper:
                 time.sleep(self.request_delay)
 
         df = pd.DataFrame(all_cases)
-        df.to_csv(output_file_name, index=False)
-        print(f"Saved {len(df)} cases to {output_file_name}")
-        return output_file_name
+        df.to_csv(output_path, index=False)
+        print(f"Saved {len(df)} cases to {output_path}")
+        return str(output_path)
 
     def _parse_case_card(self, card: Tag, year: int) -> Optional[Dict[str, object]]:
         catchword_tags = card.select("a.gd-cw")
