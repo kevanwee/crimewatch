@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated outputs
+crime_heatmap.html
+heatmap_points.json
+elitigation_criminal_cases_*_to_*.csv
+sample_*.csv
+sample_*.html
+sample_*.json
