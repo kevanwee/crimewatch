@@ -1,0 +1,14 @@
+# Render blueprint: a free web service running the Flask app with gunicorn.
+# Render dashboard -> New -> Blueprint -> pick this repo. Free services sleep after 15 idle minutes and
+# take about a minute to wake on the next visit.
+services:
+  - type: web
+    name: crimewatch
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8

@@ -28,3 +28,14 @@ def test_api_heatmap_returns_points(tmp_path):
     payload = response.get_json()
     assert payload["case_count"] == 1
     assert payload["point_count"] == 1
+
+
+def test_falls_back_to_the_bundled_snapshot(monkeypatch):
+    # With no scraped CSV and no CRIMEWATCH_DATA_FILE, a fresh deploy serves data/cases_latest.csv
+    monkeypatch.delenv("CRIMEWATCH_DATA_FILE", raising=False)
+    client = app.test_client()
+    response = client.get("/api/cases")
+
+    assert response.status_code == 200
+    assert len(response.get_json()["cases"]) > 0
+

@@ -13,6 +13,7 @@ from heatmap import build_heatmap_points, load_case_data
 REPO_ROOT = Path(__file__).resolve().parent
 FRONTEND_DIR = REPO_ROOT / "frontend"
 DEFAULT_DATA_ENV = "CRIMEWATCH_DATA_FILE"
+BUNDLED_DATA = REPO_ROOT / "data" / "cases_latest.csv"
 
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="/static")
 
@@ -33,6 +34,10 @@ def resolve_data_file(explicit_path: Optional[str]) -> Path:
     candidates = sorted(REPO_ROOT.glob("elitigation_criminal_cases_*_to_*.csv"))
     if candidates:
         return candidates[-1]
+
+    # The snapshot committed with the repo, so a fresh deploy has data without scraping first
+    if BUNDLED_DATA.exists():
+        return BUNDLED_DATA
 
     raise FileNotFoundError(
         "No case CSV found. Run crimewatcher.py first or set CRIMEWATCH_DATA_FILE."
