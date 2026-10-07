@@ -92,6 +92,14 @@ Open:
 - `http://127.0.0.1:8000/api/heatmap`
 - `http://127.0.0.1:8000/api/cases?limit=100`
 
+## Deploy (Render, free)
+
+`render.yaml` is a Render blueprint for a free web service: in the Render dashboard choose
+**New → Blueprint** and pick this repository. It installs `requirements.txt`, runs
+`gunicorn app:app`, and checks `/api/health`. With no scraped CSV and no `CRIMEWATCH_DATA_FILE`, the app
+serves the committed snapshot `data/cases_latest.csv` (174 judgments, 2023–2025). Free services sleep
+after 15 idle minutes and take about a minute to wake.
+
 ## API query parameters
 
 `/api/heatmap`
